@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ilmusli</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body data-page="products">
+
+<header>
+<button class="menu" id="mb" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+<a class="logo-wrap" href="index.html" aria-label="ilmusli home"><span class="logo"><span class="f"></span><span class="f b" aria-hidden="true"></span></span></a>
+<div class="acts"><a href="login.html" id="lg">LOGIN</a><a class="ci" href="cart.html" aria-label="Cart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z M9 8V6a3 3 0 0 1 6 0v2"/></svg><b id="cc">0</b></a></div>
+</header>
+<nav class="drawer" id="dr">
+<a href="index.html">Home</a><a href="products.html">All Products</a><a href="about.html">About</a><a href="archive.html">Archive</a><a href="contact.html">Contacts</a>
+</nav>
+<main>
+<section class="view" id="v-products">
+<div class="page" style="max-width:none"><h1>All Products</h1></div>
+<div class="page flt" style="max-width:none;padding-top:0"><input id="sq" type="search" placeholder="Search products"><div class="chips" id="chp"><button class="on" data-f="all">ALL</button><button data-f="sale">ON SALE</button><button data-f="first">COLLECTIONS</button><button data-f="tshirt">T-SHIRTS</button><button data-f="pants">PANTS</button><button data-f="balaclava">BALACLAVA</button><button data-f="cap">CAP</button><button data-f="others">OTHERS</button></div></div>
+<div class="grid" style="padding-top:0" id="g-all"></div>
+</section>
+</main>
+
+<footer>
+<p>© 2026 ilmusli. All rights reserved.</p>
+<p class="l">ilmusli™ is a registered brand of Egypt. All content on this site, including text, images and designs, is protected by copyright and may not be copied or reproduced without written permission.</p>
+<p class="l">The ilmusli name, logo, ILM product codes and all product photography are the property of ilmusli.</p>
+<p class="l">Any unauthorized use, copying or resale of our designs may lead to legal action under Egyptian law.</p>
+<p class="l">For permissions or copyright questions, write to <a href="mailto:musligoes@gmail.com" style="color:inherit">musligoes@gmail.com</a>.</p>
+</footer>
+
+
+
+
+<script src="app.js"></script>
+<script type="module" src="firebase.js"></script>
+</body>
+</html>

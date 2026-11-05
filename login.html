@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ilmusli</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body data-page="login">
+
+<header>
+<button class="menu" id="mb" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+<a class="logo-wrap" href="index.html" aria-label="ilmusli home"><span class="logo"><span class="f"></span><span class="f b" aria-hidden="true"></span></span></a>
+<div class="acts"><a href="login.html" id="lg">LOGIN</a><a class="ci" href="cart.html" aria-label="Cart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8z M9 8V6a3 3 0 0 1 6 0v2"/></svg><b id="cc">0</b></a></div>
+</header>
+<nav class="drawer" id="dr">
+<a href="index.html">Home</a><a href="products.html">All Products</a><a href="about.html">About</a><a href="archive.html">Archive</a><a href="contact.html">Contacts</a>
+</nav>
+<main>
+<section class="view" id="v-login"><div class="page"><h1 id="lt">Login</h1>
+<form id="lf"><label id="ln" style="display:none">Name<input name="n" autocomplete="name"></label>
+<label>Email<input type="email" name="e" required autocomplete="email"></label>
+<label>Password<input type="password" name="p" required minlength="6" autocomplete="current-password"></label>
+<button class="btn solid" type="submit" id="lb">LOGIN</button>
+<button class="link-btn" type="button" id="lm" style="justify-self:start">Create an account</button>
+<div class="ok" id="lo" role="status"></div><p class="fg">Forgot your password? Contact <a href="mailto:musligoes@gmail.com">musligoes@gmail.com</a></p></form></div></section>
+</main>
+
+<footer>
+<p>© 2026 ilmusli. All rights reserved.</p>
+<p class="l">ilmusli™ is a registered brand of Egypt. All content on this site, including text, images and designs, is protected by copyright and may not be copied or reproduced without written permission.</p>
+<p class="l">The ilmusli name, logo, ILM product codes and all product photography are the property of ilmusli.</p>
+<p class="l">Any unauthorized use, copying or resale of our designs may lead to legal action under Egyptian law.</p>
+<p class="l">For permissions or copyright questions, write to <a href="mailto:musligoes@gmail.com" style="color:inherit">musligoes@gmail.com</a>.</p>
+</footer>
+
+
+
+
+<script src="app.js"></script>
+<script type="module" src="firebase.js"></script>
+</body>
+</html>
