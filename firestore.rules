@@ -1,0 +1,56 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function mine(uid) { return signedIn() && request.auth.uid == uid; }
+    function isAdmin() {
+      return signedIn() && request.auth.token.email.lower() in ['leilmusli@gmail.com', 'spiderleil@gmail.com'];
+    }
+    function changed() { return request.resource.data.diff(resource.data).affectedKeys(); }
+
+    // Points: the admin can change them; a customer can only spend exactly 1,000 at a time.
+    match /users/{uid} {
+      allow read: if mine(uid) || isAdmin();
+      allow create: if mine(uid) && !('points' in request.resource.data);
+      allow update: if isAdmin()
+        || (mine(uid) && (!changed().hasAny(['points'])
+            || (resource.data.points >= 1000 && request.resource.data.points == resource.data.points - 1000)));
+    }
+
+    match /orders/{id} {
+      allow read: if isAdmin() || (signedIn() && resource.data.uid == request.auth.uid);
+      allow create: if signedIn()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == 'Pending'
+        && !request.resource.data.keys().hasAny(['pointsApplied', 'pointsAwarded', 'pointsRefunded', 'pointsEarned', 'needsReview', 'reviewReason']);
+      allow update: if
+        (isAdmin() && !changed().hasAny(['uid', 'total', 'pointsUsed']))
+        ||
+        (signedIn() && resource.data.uid == request.auth.uid
+          && changed().hasOnly(['status', 'ret', 'cancelledAt', 'cancelledBy'])
+          && (request.resource.data.status == resource.data.status
+              || (request.resource.data.status == 'Cancelled' && resource.data.status in ['Pending', 'Confirmed'])));
+    }
+
+    match /messages/{id} {
+      allow create: if request.resource.data.keys().hasOnly(['name', 'email', 'message', 'createdAt']);
+      allow read: if isAdmin();
+    }
+
+    match /subscribers/{code} {
+      allow get: if true;
+      allow list: if isAdmin();
+      allow create: if request.resource.data.keys().hasOnly(['email', 'code', 'used', 'createdAt'])
+        && request.resource.data.used == false && request.resource.data.code == code;
+      allow update: if signedIn() && resource.data.used == false
+        && changed().hasOnly(['used', 'usedAt']) && request.resource.data.used == true;
+    }
+
+    match /codes/{c} {
+      allow get: if true;
+      allow list: if false;
+      allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
+    }
+  }
+}
